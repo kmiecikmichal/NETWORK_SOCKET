@@ -119,8 +119,6 @@ int Messaging(SOCKET socket, const char *sendBuffer) {
 		WSACleanup();
 		return 1;
 	}
-
-	printf("Bytes Sent: %d\n", sendResult);
 	
 	do {
 		memset(receiveBuffer, '\0', BUFF_LEN);
@@ -139,12 +137,10 @@ int Messaging(SOCKET socket, const char *sendBuffer) {
 		}
 		else {
 			receiveResult = recv(socket, receiveBuffer, BUFF_LEN, 0);
-			printf("ReceiveResult %d\n", receiveResult);
 		}
 
 		if (receiveResult > 0) {
-			printf("Bytes received: %d\n", receiveResult);
-			printf("Message received from server: %s\n", receiveBuffer);
+			printf("%s", receiveBuffer);
 		}
 		else if (receiveResult == 0) {
 			printf("Connection closed\n");
